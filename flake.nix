@@ -10,7 +10,14 @@
     };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    ...
+  } @ inputs: {
+    nixosModules = import ./modules/nixos;
+    homeManagerModules = import ./modules/home-manager;
 
     nixosConfigurations = {
       work = nixpkgs.lib.nixosSystem {
@@ -19,8 +26,7 @@
           ./hosts/work/configuration.nix
           inputs.home-manager.nixosModules.default
         ];
-      }; 
+      };
     };
-
   };
 }

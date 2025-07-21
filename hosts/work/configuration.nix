@@ -3,14 +3,6 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, inputs, ... }:
-
-let 
-  home-manager = builtins.fetchTarball {
-    url = "https://github.com/nix-community/home-manager/archive/release-25.11.tar.gz";
-    sha256 = "0h883sfn19zb8i83p05nsfb01pl9mhjxr653qzg8wpsqc8ydxsi9";
-  };
-
-in
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -181,11 +173,6 @@ in
     xwayland.enable = true; # Xwayland can be disabled.
   };
 
-  programs.command-not-found.enable = false;
-  programs.nix-index.enable = true;
-  programs.nix-index.enableFishIntegration = true;
-
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -198,6 +185,7 @@ in
     ungoogled-chromium
     keepassxc
 
+    wdisplays
     nwg-displays
     hyprlock
     hypridle
@@ -208,29 +196,6 @@ in
 
 
     # utils
-    nixd
-    alejandra
-
-    sqlite
-
-    nix-index
-
-    fastfetch
-    bottom
-    htop
-    tmux
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    ouch
-    neovim
-    git
-    lazygit
-    curl
-    wget
-    helix
-    eza
-    ripgrep
-    fd
   ];
 
   programs.nix-ld.enable = true;
@@ -244,11 +209,6 @@ fonts.packages = with pkgs; [
   dina-font
   liberation_ttf
   mplus-outline-fonts.githubRelease
-  nerd-fonts.iosevka
-  nerd-fonts.symbols-only
-  noto-fonts
-  noto-fonts-cjk-sans
-  noto-fonts-emoji
   proggyfonts
 ];
 
