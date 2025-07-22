@@ -3,14 +3,16 @@
 {
   home.username = "ju";
   home.homeDirectory = "/home/ju";
-  # home.stateVersion = "25.05";
+  home.stateVersion = "25.05";
 
   wayland.windowManager.hyprland = {
     enable = true;
 
     plugins = [
-      inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprexpo
-      inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.split-monitor-workspaces
+        pkgs.hyprlandPlugins.hyprsplit
+        pkgs.hyprlandPlugins.hyprexpo
+        # pkgs.hyprlandPlugins.hyprfocus
+        pkgs.hyprlandPlugins.hyprgrass
     ];
   };
 
@@ -33,3 +35,4 @@
     };
   };
 }
+ 
