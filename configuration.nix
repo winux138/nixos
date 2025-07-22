@@ -197,6 +197,7 @@ in
     hyprsunset
     hyprpicker
     hyprpolkitagent
+    hyprsome
 
 
     # utils
