@@ -25,6 +25,7 @@
   outputs = {
     self,
     nixpkgs,
+    home-manager,
     ...
   } @ inputs: {
     # use "nixos", or your hostname as the name of the configuration

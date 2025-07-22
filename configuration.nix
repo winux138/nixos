@@ -5,6 +5,7 @@
   inputs,
   config,
   pkgs,
+  home-manager,
   ...
 }: {
   imports = [
@@ -17,6 +18,13 @@
   # home-manager.useGlobalPkgs = true;
   # home-manager.backupFileExtension = "backup";
   # home-manager.users.ju = import ./home.nix;
+  home-manager = {
+    extraSpecialArgs = {inherit inputs;};
+    # useUserPackages = true;
+    # useGlobalPkgs = true;
+    # backupFileExtension = "backup";
+    users.ju = import ./home.nix;
+  };
 
   # Bootloader.
   boot.loader = {
