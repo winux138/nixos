@@ -9,7 +9,7 @@
     enable = true;
     settings = {
       main = {
-        font = "Iosevka:size=16";
+        font = "Iosevka Nerd Font:size=16";
         dpi-aware = "yes";
       };
 

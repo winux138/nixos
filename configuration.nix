@@ -11,13 +11,13 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      (import "${home-manager}/nixos")
+      # (import "${home-manager}/nixos")
     ];
 
-  home-manager.useUserPackages = true;
-  home-manager.useGlobalPkgs = true;
-  home-manager.backupFileExtension = "backup";
-  home-manager.users.ju = import ./home.nix;
+  # home-manager.useUserPackages = true;
+  # home-manager.useGlobalPkgs = true;
+  # home-manager.backupFileExtension = "backup";
+  # home-manager.users.ju = import ./home.nix;
 
   # Bootloader.
   boot.loader = {
@@ -204,6 +204,7 @@ in
     nixd
     alejandra
 
+    direnv
     gcc
     clang
     fzf
@@ -235,6 +236,7 @@ in
 
 
 fonts.packages = with pkgs; [
+  font-awesome
   dina-font
   liberation_ttf
   mplus-outline-fonts.githubRelease
