@@ -10,6 +10,35 @@
   home.homeDirectory = "/home/ju";
   home.stateVersion = "25.05";
 
+  # User-specific packages
+  home.packages = with pkgs; [
+    # Terminal applications
+    kitty
+    fastfetch
+    bat
+    bottom
+    htop
+    tmux
+    fzf
+    ouch
+    helix
+    eza
+    ripgrep
+    fd
+    lazygit
+    curl
+
+    # GUI Applications
+    ungoogled-chromium
+    keepassxc
+
+    # Wayland utilities
+    nwg-displays
+    swayidle
+    swaylock-effects
+    wlogout
+  ];
+
   wayland.windowManager.hyprland = {
     enable = true;
 

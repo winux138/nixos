@@ -14,18 +14,6 @@
     # (import "${home-manager}/nixos")
   ];
 
-  # home-manager.useUserPackages = true;
-  # home-manager.useGlobalPkgs = true;
-  # home-manager.backupFileExtension = "backup";
-  # home-manager.users.ju = import ./home.nix;
-  # home-manager = {
-  #   extraSpecialArgs = {inherit inputs;};
-  #   useUserPackages = true;
-  #   useGlobalPkgs = true;
-  #   backupFileExtension = "backup";
-  #   users.ju = import ./home.nix;
-  # };
-
   # Bootloader.
   boot.loader = {
     # systemd-boot.enable = true;
@@ -195,23 +183,15 @@
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   systemd.services.nix-daemon.environment.TMPDIR = "/var/tmp";
 
-  programs.foot = {
-    enable = true;
-    enableFishIntegration = true;
-  };
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    # "os" specific
-    kitty
-    wofi
+    # System-level GUI applications
     kdePackages.dolphin
-    waybar
-    ungoogled-chromium
-    keepassxc
 
-    nwg-displays
+    # Wayland/Hyprland essentials
+    wofi
+    waybar
     hyprlock
     hypridle
     hyprpaper
@@ -220,41 +200,26 @@
     hyprpolkitagent
     hyprsome
 
+    # System notifications and clipboard
     libnotify
     mako
-    qt5.qtwayland
-    qt6.qtwayland
-    swayidle
-    swaylock-effects
-    wlogout
     wl-clipboard
 
-    # utils
+    # Qt/Wayland compatibility
+    qt5.qtwayland
+    qt6.qtwayland
+
+    # Development tools (system-wide)
     nixd
     alejandra
-
     direnv
     gcc
     clang
-    fzf
 
-    fastfetch
-    bat
-    bottom
-    htop
-    tmux
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    # Legacy packages that some might want system-wide
+    vim # Keep as emergency editor
+    git # Useful system-wide
     wget
-    ouch
-    neovim
-    git
-    lazygit
-    curl
-    wget
-    helix
-    eza
-    ripgrep
-    fd
   ];
 
   programs.nix-ld.enable = true;
