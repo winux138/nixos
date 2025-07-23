@@ -91,15 +91,10 @@
           "$mod, S, togglespecialworkspace, magic"
           "$mod SHIFT, S, movetoworkspace, special:magic"
 
-          "$mod, H, movefocus, l"
-          "$mod, J, movefocus, d"
-          "$mod, K, movefocus, u"
-          "$mod, L, movefocus, r"
-
-          "$mod SHIFT, H, movewindow, l"
-          "$mod SHIFT, J, movewindow, d"
-          "$mod SHIFT, K, movewindow, u"
-          "$mod SHIFT, L, movewindow, r"
+          "$mod, J, movefocus, r"
+          "$mod, K, movefocus, l"
+          "$mod SHIFT, J, movewindow, r"
+          "$mod SHIFT, K, movewindow, l"
 
           "$mod, comma, focusmonitor, -1"
           "$mod, period, focusmonitor, +1"
