@@ -16,10 +16,11 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-    split-monitor-workspaces = {
-      url = "github:Duckonaut/split-monitor-workspaces";
-      inputs.hyprland.follows = "hyprland"; # <- make sure this line is present for the plugin to work as intended
+    hyprland-hyprsplit= {
+      url = "github:shezdy/hyprsplit";
+      inputs.hyprland.follows = "hyprland";
     };
+
   };
 
   outputs = {
@@ -34,7 +35,16 @@
       specialArgs = {inherit inputs;};
       modules = [
         ./configuration.nix
-        inputs.home-manager.nixosModules.default
+        # inputs.home-manager.nixosModules.default
+        home-manager.nixosModules.home-manager
+          {
+            home-manager.users.ju = import ./home.nix;
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "backup";
+            home-manager.extraSpecialArgs = {inherit (inputs) hyprland-plugins hyprland-hyprsplit;};
+          }
+
       ];
     };
   };

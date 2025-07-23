@@ -5,7 +5,7 @@
   inputs,
   config,
   pkgs,
-  home-manager,
+  # home-manager,
   ...
 }: {
   imports = [
@@ -18,13 +18,13 @@
   # home-manager.useGlobalPkgs = true;
   # home-manager.backupFileExtension = "backup";
   # home-manager.users.ju = import ./home.nix;
-  home-manager = {
-    extraSpecialArgs = {inherit inputs;};
-    # useUserPackages = true;
-    # useGlobalPkgs = true;
-    # backupFileExtension = "backup";
-    users.ju = import ./home.nix;
-  };
+  # home-manager = {
+  #   extraSpecialArgs = {inherit inputs;};
+  #   useUserPackages = true;
+  #   useGlobalPkgs = true;
+  #   backupFileExtension = "backup";
+  #   users.ju = import ./home.nix;
+  # };
 
   # Bootloader.
   boot.loader = {
@@ -34,11 +34,11 @@
       # efiSysMountPoint = "/boot/efi"; # ← use the same mount point here.
     };
     grub = {
-       enable = true;
-       efiSupport = true;
-       #efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
-       device = "nodev";
-       useOSProber = true;
+      enable = true;
+      efiSupport = true;
+      #efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
+      device = "nodev";
+      useOSProber = true;
     };
   };
 
@@ -56,7 +56,6 @@
   services.xserver.videoDrivers = ["nvidia"];
 
   hardware.nvidia = {
-
     # Modesetting is required.
     modesetting.enable = true;
 
@@ -79,7 +78,7 @@
     open = false;
 
     # Enable the Nvidia settings menu,
-        # accessible via `nvidia-settings`.
+    # accessible via `nvidia-settings`.
     nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
@@ -196,12 +195,16 @@
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   systemd.services.nix-daemon.environment.TMPDIR = "/var/tmp";
 
+  programs.foot = {
+    enable = true;
+    enableFishIntegration = true;
+  };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # "os" specific
     kitty
-    foot
     wofi
     kdePackages.dolphin
     waybar
