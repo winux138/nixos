@@ -1,8 +1,11 @@
 {
   config,
   pkgs,
+  nvf,
+  hyprland-plugins,
+  hyprland-hyprsplit,
   ...
-} @ inputs: {
+}: {
   home.username = "ju";
   home.homeDirectory = "/home/ju";
   home.stateVersion = "25.05";
@@ -10,13 +13,12 @@
   wayland.windowManager.hyprland = {
     enable = true;
 
-    plugins = [
-      inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
-      inputs.hyprland-plugins.packages.${pkgs.system}.hyprfocus
-      # inputs.hyprland-plugins.packages.${pkgs.system}.hyprgrass
-      inputs.hyprland-hyprsplit.packages.${pkgs.system}.hyprsplit
-    ];
-
+  plugins = [
+    hyprland-plugins.packages.${pkgs.system}.hyprexpo
+    hyprland-plugins.packages.${pkgs.system}.hyprfocus
+    # hyprland-plugins.packages.${pkgs.system}.hyprgrass
+    hyprland-hyprsplit.packages.${pkgs.system}.hyprsplit
+  ];
     settings = {
       "$mod" = "SUPER";
       "$terminal" = "foot";
@@ -44,7 +46,7 @@
       };
 
       decoration = {
-        rounding = 2;
+        rounding = 6;
         active_opacity = 1.0;
         inactive_opacity = 0.8;
 
@@ -120,6 +122,19 @@
         "$mod, mouse:272, movewindow"
         "$mod, mouse:273, resizewindow"
       ];
+    };
+  };
+
+  programs.nvf = {
+    enable = true;
+    # your settings need to go into the settings attribute set
+    # most settings are documented in the appendix
+    settings = {
+      vim.viAlias = false;
+      vim.vimAlias = true;
+      vim.lsp = {
+        enable = true;
+      };
     };
   };
 

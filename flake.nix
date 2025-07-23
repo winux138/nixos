@@ -16,11 +16,15 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-    hyprland-hyprsplit= {
+    hyprland-hyprsplit = {
       url = "github:shezdy/hyprsplit";
       inputs.hyprland.follows = "hyprland";
     };
 
+    nvf = {
+      url = "github:NotAShelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -36,15 +40,18 @@
       modules = [
         ./configuration.nix
         # inputs.home-manager.nixosModules.default
+        # inputs.nvf.homeManagerModules.default # <- this imports the home-manager module that provides the options
         home-manager.nixosModules.home-manager
-          {
-            home-manager.users.ju = import ./home.nix;
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.backupFileExtension = "backup";
-            home-manager.extraSpecialArgs = {inherit (inputs) hyprland-plugins hyprland-hyprsplit;};
-          }
-
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.backupFileExtension = "backup";
+          home-manager.extraSpecialArgs = {inherit (inputs) hyprland-plugins hyprland-hyprsplit nvf;};
+          home-manager.users.ju = import ./home.nix;
+          home-manager.sharedModules = [
+            inputs.nvf.homeManagerModules.default
+          ];
+        }
       ];
     };
   };
