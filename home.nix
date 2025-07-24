@@ -24,6 +24,7 @@
     ouch
     helix
     eza
+    dust
     ripgrep
     fd
     lazygit
