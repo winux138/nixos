@@ -97,10 +97,10 @@
       };
 
       env = [
-        "XDG_DATA_DIRS,$HOME/.nix-profile/share"
+        "XDG_DATA_DIRS,$HOME/.nix-profile/share:/nix/var/nix/profiles/default/share:/run/current-system/sw/share:/usr/share:/usr/local/share"
         "XDG_SESSION_TYPE,wayland"
-        "XCURSOR_SIZE,24"
-        "HYPRCURSOR_SIZE,24"
+        "XCURSOR_SIZE,18"
+        "HYPRCURSOR_SIZE,18"
       ];
 
       input = {
@@ -159,6 +159,57 @@
     };
   };
 
+  programs.hyprpanel = {
+    enable = true;
+    # Configure and theme almost all options from the GUI.
+    # See 'https://hyprpanel.com/configuration/settings.html'.
+    # Default: <same as gui>
+    settings = {
+
+      # Configure bar layouts for monitors.
+      # See 'https://hyprpanel.com/configuration/panel.html'.
+      # Default: null
+      layout = {
+        bar.layouts = {
+          "0" = {
+            left = [
+              "dashboard"
+              "workspaces"
+            ];
+            middle = [ "media" ];
+            right = [
+              "volume"
+              "systray"
+              "notifications"
+            ];
+          };
+        };
+      };
+
+      bar.launcher.autoDetectIcon = true;
+      bar.workspaces.show_icons = true;
+
+      menus.clock = {
+        time = {
+          military = true;
+          hideSeconds = true;
+        };
+        weather.unit = "metric";
+      };
+
+      menus.dashboard.directories.enabled = false;
+      menus.dashboard.stats.enable_gpu = true;
+
+      theme.bar.transparent = true;
+
+      theme.font = {
+        name = "Iosevka Nerd Font";
+        size = "16px";
+      };
+    };
+  };
+
+  programs.neovim.defaultEditor = true;
   programs.nvf = {
     enable = true;
     enableManpages = true;
