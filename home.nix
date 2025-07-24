@@ -224,6 +224,12 @@
     };
   };
 
+  # Enable desktop entries for GUI applications
+  targets.genericLinux.enable = true;
+  xdg.enable = true;
+  xdg.mime.enable = true;
+  xdg.mimeApps.enable = true;
+
   programs.foot = {
     enable = true;
     settings = {
