@@ -174,7 +174,7 @@
       statusline.lualine.enable = true;
       telescope.enable = true;
       autocomplete.nvim-cmp.enable = true;
-      dashboard.enable = true;
+      dashboard.alpha.enable = true;
 
       binds = {
         whichKey.enable = true;
@@ -191,26 +191,24 @@
       };
 
       ui = {
+        smartcolumn.enable = true;
         smartcolumn.setupOpts.colorcolumn = [
           80
           120
         ];
       };
 
-      # # Configure colorscheme
-      # theme = {
-      #   enable = true;
-      #   name = "rose-pine";
-      #   style = "dawn";
-      #   transparent = true;
-      # };
-
-      config.vim.lazy.plugins = {
-        package = pkgs.vimPlugins.zenbones-nvim;
-        cmd = [
-          "colorscheme zenbones"
-          "set background=light"
-        ];
+      extraPlugins = {
+        lush = {
+          package = pkgs.vimPlugins.lush-nvim;
+        };
+        zenbones = {
+          package = pkgs.vimPlugins.zenbones-nvim;
+          setup = ''
+            vim.cmd('colorscheme zenbones')
+            vim.cmd('set background=light')
+          '';
+        };
       };
 
       languages = {
