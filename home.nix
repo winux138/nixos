@@ -229,24 +229,6 @@
         registers = "unnamedplus";
       };
 
-      extraPlugins = {
-        photon = {
-          package = pkgs.vimUtils.buildVimPlugin {
-            pname = "photon";
-            version = "1.0.0";
-            src = pkgs.fetchFromGitHub {
-              owner = "axvr";
-              repo = "photon.vim";
-              rev = "master";
-              hash = "sha256-kM7WP03uE20yr0nCusB3ncHzgtEYxqNzoNoQGen9p+o=";
-            };
-          };
-          setup = ''
-            vim.cmd('colorscheme antiphoton')
-          '';
-        };
-      };
-
       statusline.lualine.enable = true;
       telescope.enable = true;
       autocomplete.nvim-cmp.enable = true;
@@ -278,6 +260,21 @@
             vim.cmd('colorscheme zenbones')
             vim.cmd('set background=light')
           '';
+        };
+        photon = {
+          package = pkgs.vimUtils.buildVimPlugin {
+            pname = "photon";
+            version = "1.0.0";
+            src = pkgs.fetchFromGitHub {
+              owner = "axvr";
+              repo = "photon.vim";
+              rev = "master";
+              hash = "sha256-kM7WP03uE20yr0nCusB3ncHzgtEYxqNzoNoQGen9p+o=";
+            };
+          };
+          # setup = ''
+          #   vim.cmd('colorscheme antiphoton')
+          # '';
         };
       };
 
