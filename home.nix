@@ -229,17 +229,23 @@
         registers = "unnamedplus";
       };
 
-      # TODO: Fiddle with that
-      # pluginOverrides = ''
-      #   {
-      #     lazydev-nvim = pkgs.fetchFromGitHub {
-      #       owner = "folke";
-      #       repo = "lazydev.nvim";
-      #       rev = "";
-      #       hash = "";
-      #     };
-      #   }
-      # '';
+      extraPlugins = {
+        photon = {
+          package = pkgs.vimUtils.buildVimPlugin {
+            pname = "photon";
+            version = "1.0.0";
+            src = pkgs.fetchFromGitHub {
+              owner = "axvr";
+              repo = "photon.vim";
+              rev = "master";
+              hash = "sha256-kM7WP03uE20yr0nCusB3ncHzgtEYxqNzoNoQGen9p+o=";
+            };
+          };
+          setup = ''
+            vim.cmd('colorscheme antiphoton')
+          '';
+        };
+      };
 
       statusline.lualine.enable = true;
       telescope.enable = true;
@@ -284,6 +290,10 @@
         rust.enable = true;
         ts.enable = true;
         clang.enable = true;
+      };
+
+      lsp = {
+        enable = true;
       };
     };
   };
