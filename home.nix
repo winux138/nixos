@@ -170,6 +170,8 @@
       searchCase = "smart";
       options.scrolloff = 5;
       options.wrap = false;
+      options.colorcolumn = "80,120";
+
       clipboard = {
         enable = true;
         providers.wl-copy.enable = true;
@@ -177,22 +179,23 @@
       };
 
       # TODO: Fiddle with that
-      pluginOverrides = ''
-        {
-          lazydev-nvim = pkgs.fetchFromGitHub {
-            owner = "folke";
-            repo = "lazydev.nvim";
-            rev = "";
-            hash = "";
-          };
-        }
-      '';
+      # pluginOverrides = ''
+      #   {
+      #     lazydev-nvim = pkgs.fetchFromGitHub {
+      #       owner = "folke";
+      #       repo = "lazydev.nvim";
+      #       rev = "";
+      #       hash = "";
+      #     };
+      #   }
+      # '';
 
       statusline.lualine.enable = true;
       telescope.enable = true;
       autocomplete.nvim-cmp.enable = true;
       dashboard.alpha.enable = true;
       mini.surround.enable = true;
+      notes.todo-comments.enable = true;
 
       binds = {
         whichKey.enable = true;
@@ -206,14 +209,6 @@
 
       utility = {
         motion.flash-nvim.enable = true;
-      };
-
-      ui = {
-        smartcolumn.enable = true;
-        smartcolumn.setupOpts.colorcolumn = [
-          80
-          120
-        ];
       };
 
       extraPlugins = {
