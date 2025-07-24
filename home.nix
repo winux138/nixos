@@ -169,6 +169,7 @@
 
       searchCase = "smart";
       options.scrolloff = 5;
+      options.wrap = false;
 
       statusline.lualine.enable = true;
       telescope.enable = true;
@@ -189,12 +190,27 @@
         motion.flash-nvim.enable = true;
       };
 
-      # Configure colorscheme
-      theme = {
-        enable = true;
-        name = "rose-pine";
-        style = "dawn";
-        transparent = true;
+      ui = {
+        smartcolumn.setupOpts.colorcolumn = [
+          80
+          120
+        ];
+      };
+
+      # # Configure colorscheme
+      # theme = {
+      #   enable = true;
+      #   name = "rose-pine";
+      #   style = "dawn";
+      #   transparent = true;
+      # };
+
+      config.vim.lazy.plugins = {
+        package = pkgs.vimPlugins.zenbones-nvim;
+        cmd = [
+          "colorscheme zenbones"
+          "set background=light"
+        ];
       };
 
       languages = {
