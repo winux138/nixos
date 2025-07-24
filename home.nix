@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  nvf,
   hyprland-plugins,
   hyprland-hyprsplit,
   ...
