@@ -5,7 +5,8 @@
   hyprland-plugins,
   hyprland-hyprsplit,
   ...
-}: {
+}:
+{
   home.username = "ju";
   home.homeDirectory = "/home/ju";
   home.stateVersion = "25.05";
@@ -42,12 +43,12 @@
   wayland.windowManager.hyprland = {
     enable = true;
 
-  plugins = [
-    hyprland-plugins.packages.${pkgs.system}.hyprexpo
-    hyprland-plugins.packages.${pkgs.system}.hyprfocus
-    # hyprland-plugins.packages.${pkgs.system}.hyprgrass
-    hyprland-hyprsplit.packages.${pkgs.system}.hyprsplit
-  ];
+    plugins = [
+      hyprland-plugins.packages.${pkgs.system}.hyprexpo
+      hyprland-plugins.packages.${pkgs.system}.hyprfocus
+      # hyprland-plugins.packages.${pkgs.system}.hyprgrass
+      hyprland-hyprsplit.packages.${pkgs.system}.hyprsplit
+    ];
     settings = {
       "$mod" = "SUPER";
       "$terminal" = "foot";
@@ -111,40 +112,44 @@
         };
       };
 
-      bind =
-        [
-          "$mod, S, exec, grimblast copy area"
-          "$mod, P, exec, $menu"
-          "$mod, return, exec, $terminal"
-          "$mod SHIFT, L, exec, hyprlock"
+      bind = [
+        "$mod, S, exec, grimblast copy area"
+        "$mod, P, exec, $menu"
+        "$mod, return, exec, $terminal"
+        "$mod SHIFT, L, exec, hyprlock"
 
-          "$mod, C, killactive,"
-          "$mod, S, togglespecialworkspace, magic"
-          "$mod SHIFT, S, movetoworkspace, special:magic"
+        "$mod, C, killactive,"
+        "$mod, S, togglespecialworkspace, magic"
+        "$mod SHIFT, S, movetoworkspace, special:magic"
 
-          "$mod, J, movefocus, r"
-          "$mod, K, movefocus, l"
-          "$mod SHIFT, J, movewindow, r"
-          "$mod SHIFT, K, movewindow, l"
+        "$mod, H, movefocus, l"
+        "$mod, J, movefocus, d"
+        "$mod, K, movefocus, u"
+        "$mod, L, movefocus, r"
+        "$mod SHIFT, J, movewindow, d"
+        "$mod SHIFT, K, movewindow, u"
 
-          "$mod, comma, focusmonitor, -1"
-          "$mod, period, focusmonitor, +1"
-          "$mod SHIFT, comma, movewindow, mon:-1"
-          "$mod SHIFT, period, movewindow, mon:+1"
-        ]
-        ++ (
-          # workspaces
-          # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
-          builtins.concatLists (builtins.genList (
-              i: let
-                ws = i + 1;
-              in [
-                "$mod, code:1${toString i}, split:workspace, ${toString ws}"
-                "$mod SHIFT, code:1${toString i}, split:movetoworkspace, ${toString ws}"
-              ]
-            )
-            9)
-        );
+        "$mod, comma, focusmonitor, -1"
+        "$mod, period, focusmonitor, +1"
+        "$mod SHIFT, comma, movewindow, mon:-1"
+        "$mod SHIFT, period, movewindow, mon:+1"
+      ]
+      ++ (
+        # workspaces
+        # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
+        builtins.concatLists (
+          builtins.genList (
+            i:
+            let
+              ws = i + 1;
+            in
+            [
+              "$mod, code:1${toString i}, split:workspace, ${toString ws}"
+              "$mod SHIFT, code:1${toString i}, split:movetoworkspace, ${toString ws}"
+            ]
+          ) 9
+        )
+      );
 
       bindm = [
         # Bind mouse buttons to actions (e.g., move or resize windows)
@@ -156,13 +161,51 @@
 
   programs.nvf = {
     enable = true;
-    # your settings need to go into the settings attribute set
-    # most settings are documented in the appendix
-    settings = {
-      vim.viAlias = false;
-      vim.vimAlias = true;
-      vim.lsp = {
+    enableManpages = true;
+
+    settings.vim = {
+      viAlias = false;
+      vimAlias = true;
+
+      searchCase = "smart";
+      options.scrolloff = 5;
+
+      statusline.lualine.enable = true;
+      telescope.enable = true;
+      autocomplete.nvim-cmp.enable = true;
+      dashboard.enable = true;
+
+      binds = {
+        whichKey.enable = true;
+        # cheatsheet.enable = true;
+      };
+
+      git = {
         enable = true;
+        neogit.enable = true;
+      };
+
+      utility = {
+        motion.flash-nvim.enable = true;
+      };
+
+      # Configure colorscheme
+      theme = {
+        enable = true;
+        name = "rose-pine";
+        style = "dawn";
+        transparent = true;
+      };
+
+      languages = {
+        enableLSP = true;
+        enableTreesitter = true;
+
+        nix.enable = true;
+        python.enable = true;
+        rust.enable = true;
+        ts.enable = true;
+        clang.enable = true;
       };
     };
   };
