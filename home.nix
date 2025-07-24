@@ -170,11 +170,29 @@
       searchCase = "smart";
       options.scrolloff = 5;
       options.wrap = false;
+      clipboard = {
+        enable = true;
+        providers.wl-copy.enable = true;
+        registers = "unnamedplus";
+      };
+
+      # TODO: Fiddle with that
+      pluginOverrides = ''
+        {
+          lazydev-nvim = pkgs.fetchFromGitHub {
+            owner = "folke";
+            repo = "lazydev.nvim";
+            rev = "";
+            hash = "";
+          };
+        }
+      '';
 
       statusline.lualine.enable = true;
       telescope.enable = true;
       autocomplete.nvim-cmp.enable = true;
       dashboard.alpha.enable = true;
+      mini.surround.enable = true;
 
       binds = {
         whichKey.enable = true;
