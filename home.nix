@@ -234,7 +234,6 @@
       telescope.enable = true;
       autocomplete.nvim-cmp.enable = true;
       dashboard.alpha.enable = true;
-      mini.surround.enable = true;
       notes.todo-comments.enable = true;
 
       binds = {
@@ -249,6 +248,7 @@
 
       utility = {
         motion.flash-nvim.enable = true;
+        surround.enable = true;
       };
 
       extraPlugins = {
