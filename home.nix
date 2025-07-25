@@ -222,6 +222,7 @@
       options.scrolloff = 5;
       options.wrap = false;
       options.colorcolumn = "80,120";
+      options.autoread = true;
 
       clipboard = {
         enable = true;
