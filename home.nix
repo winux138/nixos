@@ -285,7 +285,18 @@
 
         nix.enable = true;
         python.enable = true;
-        rust.enable = true;
+        rust = {
+          enable = true;
+          crates.enable = true;
+          lsp.opts = ''
+            ['rust-analyzer'] = {
+              cargo = {allFeature = true},
+              procMacro = {
+                enable = true,
+              },
+            },
+          '';
+        };
         ts.enable = true;
         clang.enable = true;
       };
