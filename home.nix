@@ -28,6 +28,8 @@
     fd
     lazygit
     curl
+    jmtpfs
+    vlc
 
     # GUI Applications
     ungoogled-chromium
