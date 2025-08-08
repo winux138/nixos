@@ -7,7 +7,8 @@
   pkgs,
   # home-manager,
   ...
-}: {
+}:
+{
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -41,7 +42,7 @@
   hardware.bluetooth.enable = true;
 
   # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
     # Modesetting is required.
@@ -72,6 +73,8 @@
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
+
+  hardware.keyboard.zsa.enable = true;
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -125,9 +128,21 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  services.upower.enable = true;
+  services.safeeyes.enable = true;
+
+  # nixpkgs.overlays = [
+  #   (import (
+  #     builtins.fetchTarball {
+  #       url = "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
+  #     }
+  #   ))
+  # ];
   services.emacs = {
     enable = true;
+    # package = pkgs.emacs-unstable;
     package = pkgs.emacs;
+    # with pkgs; ((emacsPackagesFor emacs-pgtk).emacsWithPackages (epkgs: [ epkgs.vterm epkgs.use-package ]));
   };
 
   programs.fish.enable = true;
@@ -136,7 +151,10 @@
   users.users.ju = {
     isNormalUser = true;
     description = "ju";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     packages = with pkgs; [
       # thunderbird
     ];
@@ -177,7 +195,8 @@
     xwayland.enable = true; # Xwayland can be disabled.
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     # make sure to also set the portal package, so that they are in sync
-    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    portalPackage =
+      inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
   };
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
@@ -220,6 +239,8 @@
     vim # Keep as emergency editor
     git # Useful system-wide
     wget
+    keymapp
+    ungoogled-chromium
   ];
 
   programs.nix-ld.enable = true;
@@ -241,7 +262,10 @@
     proggyfonts
   ];
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

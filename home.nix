@@ -26,6 +26,8 @@
     dust
     ripgrep
     fd
+    tree
+    opencode
     lazygit
     curl
     jmtpfs
@@ -254,13 +256,16 @@
       };
 
       extraPlugins = {
+        # Opencode = {
+        #   package = pkgs.vimPlugins.opencode-nvim;
+        # };
         lush = {
           package = pkgs.vimPlugins.lush-nvim;
         };
         zenbones = {
           package = pkgs.vimPlugins.zenbones-nvim;
           setup = ''
-            vim.cmd('colorscheme zenbones')
+            vim.cmd('colorscheme neobones')
             vim.cmd('set background=light')
           '';
         };
@@ -282,8 +287,8 @@
       };
 
       languages = {
-        enableLSP = true;
         enableTreesitter = true;
+        enableFormat = true;
 
         nix.enable = true;
         python.enable = true;
@@ -301,6 +306,7 @@
         };
         ts.enable = true;
         clang.enable = true;
+        markdown.enable = true;
       };
 
       lsp = {
