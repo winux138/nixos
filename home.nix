@@ -315,6 +315,16 @@
     };
   };
 
+  programs.tmux = {
+    enable = true;
+    clock24  = true;
+    mouse = true;
+    keyMode = "vi";
+    baseIndex = 1;
+    customPaneNavigationAndResize = true;
+    escapeTime = 0;
+  };
+
   # Enable desktop entries for GUI applications
   targets.genericLinux.enable = true;
   xdg.enable = true;
