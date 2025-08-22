@@ -5,10 +5,10 @@
   inputs,
   config,
   pkgs,
+  lib,
   # home-manager,
   ...
-}:
-{
+}: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -42,7 +42,7 @@
   hardware.bluetooth.enable = true;
 
   # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = ["nvidia"];
 
   hardware.nvidia = {
     # Modesetting is required.
@@ -105,6 +105,9 @@
     layout = "us";
     variant = "";
   };
+
+  services.gvfs.enable = true;
+  services.udisks2.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -241,6 +244,7 @@
     wget
     keymapp
     ungoogled-chromium
+    qutebrowser
   ];
 
   programs.nix-ld.enable = true;
@@ -278,7 +282,14 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    settings.PasswordAuthentication = true;
+  };
+  systemd.services.sshd = {
+    wantedBy = lib.mkForce [];
+    stopIfChanged = lib.mkForce true;
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
