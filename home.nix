@@ -10,6 +10,9 @@
   home.homeDirectory = "/home/ju";
   home.stateVersion = "25.05";
 
+  programs.bash.enable = true;
+  programs.fish.enable = true;
+
   # User-specific packages
   home.packages = with pkgs; [
     # Terminal applications
@@ -32,6 +35,8 @@
     curl
     jmtpfs
     vlc
+    qimgv
+    kdePackages.gwenview
 
     # GUI Applications
     ungoogled-chromium
@@ -56,9 +61,10 @@
     settings = {
       "$mod" = "SUPER";
       "$terminal" = "foot";
-      "$menu" = "wofi --show drun";
+      "$menu" = "rofi -show drun";
 
       "monitor" = [
+        "eDP-1,1920x1200@60.03,0x0,1.0"
         "DP-4,2560x1440@59.95,1440x0,1.0,transform,1"
         "DP-5,2560x1440@59.95,2880x765,1.0"
         "DP-7,2560x1440@59.95,0x0,1.0,transform,1"
@@ -114,6 +120,11 @@
           natural_scroll = true;
           disable_while_typing = true;
         };
+      };
+
+      device = {
+        name = "pixart-usb-optical-mouse";
+        sensitivity = "-1";
       };
 
       bind = [
@@ -183,6 +194,7 @@
             middle = [ "media" ];
             right = [
               "volume"
+              "battery"
               "systray"
               "notifications"
             ];
@@ -191,7 +203,7 @@
       };
 
       bar.launcher.autoDetectIcon = true;
-      bar.workspaces.show_icons = true;
+      # bar.workspaces.show_icons = true;
 
       menus.clock = {
         time = {
@@ -208,7 +220,7 @@
 
       theme.font = {
         name = "Iosevka Nerd Font";
-        size = "16px";
+        size = "12px";
       };
     };
   };
