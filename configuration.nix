@@ -43,8 +43,8 @@
 
     extraPackages = with pkgs; [
       intel-media-driver
-      vaapiVdpau
-      vaapiIntel
+      # vaapiVdpau
+      # vaapiIntel
       libvdpau-va-gl
       vpl-gpu-rt # for newer GPUs on NixOS >24.05 or unstable
     ];
@@ -161,6 +161,8 @@
   services.upower.enable = true;
   services.safeeyes.enable = true;
 
+  environment.pathsToLink = ["/share/applications" "/share/xdg-desktop-portal"];
+
   # nixpkgs.overlays = [
   #   (import (
   #     builtins.fetchTarball {
@@ -232,9 +234,17 @@
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   systemd.services.nix-daemon.environment.TMPDIR = "/var/tmp";
 
-  programs.steam.enable = true;
-  programs.steam.gamescopeSession.enable = true;
-  programs.gamemode.enable = true;
+  # programs.steam.enable = true;
+  # programs.steam.gamescopeSession.enable = true;
+  # programs.gamemode.enable = true;
+
+  programs.virt-manager.enable = true;
+  users.groups.libvirtd.members = ["ju"];
+  virtualisation.libvirtd.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
+  # virtualisation.libvirtd.hooks.network = ''
+  #   virsh net-autostart default
+  # '';
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -249,8 +259,8 @@
     signal-desktop
 
     # Wayland/Hyprland essentials
-    rofi-wayland
-    rofi-emoji-wayland
+    rofi
+    rofi-emoji
     waybar
     hyprlock
     hypridle
@@ -283,6 +293,7 @@
     keymapp
     ungoogled-chromium
     qutebrowser
+    calibre
   ];
 
   programs.nix-ld.enable = true;
@@ -300,7 +311,7 @@
     nerd-fonts.symbols-only
     noto-fonts
     noto-fonts-cjk-sans
-    noto-fonts-emoji
+    noto-fonts-color-emoji
     proggyfonts
   ];
 
@@ -333,17 +344,17 @@
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-  networking.firewall = {
-    allowedUDPPorts = [ 5353 ]; # For device discovery
-    allowedUDPPortRanges = [
-      {
-        from = 32768;
-        to = 61000;
-      }
-    ]; # For Streaming
-    allowedTCPPorts = [ 8010 ]; # For gnomecast server
-  };
+  networking.firewall.enable = false;
+  # networking.firewall = {
+  #   allowedUDPPorts = [5353]; # For device discovery
+  #   allowedUDPPortRanges = [
+  #     {
+  #       from = 32768;
+  #       to = 61000;
+  #     }
+  #   ]; # For Streaming
+  #   allowedTCPPorts = [8010]; # For gnomecast server
+  # };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
