@@ -304,6 +304,11 @@
 
         nix.enable = true;
         python.enable = true;
+        csharp = {
+          enable = true;
+          lsp.server = "omnisharp";
+        };
+
         rust = {
           enable = true;
           crates.enable = true;
