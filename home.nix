@@ -33,7 +33,6 @@
     opencode
     lazygit
     curl
-    jmtpfs
     vlc
     qimgv
     kdePackages.gwenview
@@ -61,7 +60,7 @@
     enable = true;
 
     plugins = [
-      hyprland-plugins.packages.${pkgs.system}.hyprexpo
+      # hyprland-plugins.packages.${pkgs.system}.hyprexpo
       hyprland-plugins.packages.${pkgs.system}.hyprfocus
       # hyprland-plugins.packages.${pkgs.system}.hyprgrass
       hyprland-hyprsplit.packages.${pkgs.system}.hyprsplit
@@ -182,56 +181,57 @@
     };
   };
 
-  programs.hyprpanel = {
-    enable = true;
-    # Configure and theme almost all options from the GUI.
-    # See 'https://hyprpanel.com/configuration/settings.html'.
-    # Default: <same as gui>
-    settings = {
+  services.wayle.enable = true;
+        # programs.hyprpanel = {
+        #   enable = true;
+        #   # Configure and theme almost all options from the GUI.
+        #   # See 'https://hyprpanel.com/configuration/settings.html'.
+        #   # Default: <same as gui>
+        #   settings = {
 
-      # Configure bar layouts for monitors.
-      # See 'https://hyprpanel.com/configuration/panel.html'.
-      # Default: null
-      layout = {
-        bar.layouts = {
-          "0" = {
-            left = [
-              "dashboard"
-              "workspaces"
-            ];
-            middle = [ "media" ];
-            right = [
-              "volume"
-              "battery"
-              "systray"
-              "notifications"
-            ];
-          };
-        };
-      };
+        #     # Configure bar layouts for monitors.
+        #     # See 'https://hyprpanel.com/configuration/panel.html'.
+        #     # Default: null
+        #     layout = {
+        #       bar.layouts = {
+        #         "0" = {
+        #           left = [
+        #             "dashboard"
+        #             "workspaces"
+        #           ];
+        #           middle = [ "media" ];
+        #           right = [
+        #             "volume"
+        #             "battery"
+        #             "systray"
+        #             "notifications"
+        #           ];
+        #         };
+        #       };
+        #     };
 
-      bar.launcher.autoDetectIcon = true;
-      # bar.workspaces.show_icons = true;
+        #     bar.launcher.autoDetectIcon = true;
+        #     # bar.workspaces.show_icons = true;
 
-      menus.clock = {
-        time = {
-          military = true;
-          hideSeconds = true;
-        };
-        weather.unit = "metric";
-      };
+        #     menus.clock = {
+        #       time = {
+        #         military = true;
+        #         hideSeconds = true;
+        #       };
+        #       weather.unit = "metric";
+        #     };
 
-      menus.dashboard.directories.enabled = false;
-      menus.dashboard.stats.enable_gpu = true;
+        #     menus.dashboard.directories.enabled = false;
+        #     menus.dashboard.stats.enable_gpu = true;
 
-      theme.bar.transparent = true;
+        #     theme.bar.transparent = true;
 
-      theme.font = {
-        name = "Iosevka Nerd Font";
-        size = "12px";
-      };
-    };
-  };
+        #     theme.font = {
+        #       name = "Iosevka Nerd Font";
+        #       size = "12px";
+        #     };
+        #   };
+        # };
 
   programs.neovim.defaultEditor = true;
   programs.nvf = {
@@ -312,24 +312,23 @@
 
         nix.enable = true;
         python.enable = true;
-        csharp = {
-          enable = true;
-          lsp.server = "omnisharp";
-        };
+        # csharp = {
+        #   enable = true;
+        #   lsp.server = "omnisharp";
+        # };
 
         rust = {
           enable = true;
-          crates.enable = true;
-          lsp.opts = ''
-            ['rust-analyzer'] = {
-              cargo = {allFeature = true},
-              procMacro = {
-                enable = true,
-              },
-            },
-          '';
+                                        # crates.enable = true;
+                                        # lsp.opts = ''
+                                        #   ['rust-analyzer'] = {
+                                        #     cargo = {allFeature = true},
+                                        #     procMacro = {
+                                        #       enable = true,
+                                        #     },
+                                        #   },
+                                        # '';
         };
-        ts.enable = true;
         clang.enable = true;
         markdown.enable = true;
       };
@@ -342,7 +341,7 @@
 
   programs.tmux = {
     enable = true;
-    clock24  = true;
+    clock24 = true;
     mouse = true;
     keyMode = "vi";
     baseIndex = 1;
