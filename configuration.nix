@@ -207,17 +207,17 @@
   # Install firefox.
   programs.firefox.enable = true;
 
-  programs.chromium = {
-    enable = true;
-    extensions = [
-      "mdjildafknihdffpkfmmpnpoiajfjnjd" # consent-o-matic
-      "cjpalhdlnbpafiamejdnhcphjbkeiagm" # ublock origin
-      "eimadpbcbfnmbkopoojfekhnkhdbieeh" # dark reader
-      "elifhakcjgalahccnjkneoccemfahfoa" # mardown here
-    ];
-    defaultSearchProviderSearchURL = "https://encrypted.google.com/search?q={searchTerms}&{google:RLZ}{google:originalQueryForSuggestion}{google:assistedQueryStats}{google:searchFieldtrialParameter}{google:searchClient}{google:sourceId}{google:instantExtendedEnabledParameter}ie={inputEncoding}";
-    defaultSearchProviderEnabled = true;
-  };
+  # programs.chromium = {
+  #   enable = true;
+  #   extensions = [
+  #     "mdjildafknihdffpkfmmpnpoiajfjnjd" # consent-o-matic
+  #     "cjpalhdlnbpafiamejdnhcphjbkeiagm" # ublock origin
+  #     "eimadpbcbfnmbkopoojfekhnkhdbieeh" # dark reader
+  #     "elifhakcjgalahccnjkneoccemfahfoa" # mardown here
+  #   ];
+  #   defaultSearchProviderSearchURL = "https://encrypted.google.com/search?q={searchTerms}&{google:RLZ}{google:originalQueryForSuggestion}{google:assistedQueryStats}{google:searchFieldtrialParameter}{google:searchClient}{google:sourceId}{google:instantExtendedEnabledParameter}ie={inputEncoding}";
+  #   defaultSearchProviderEnabled = true;
+  # };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -261,11 +261,11 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # System-level GUI applications
-    mangohud
-    protonup-qt
-    lutris
-    bottles
-    heroic
+    # mangohud
+    # protonup-qt
+    # lutris
+    # bottles
+    # heroic
     kdePackages.dolphin
     signal-desktop
 
@@ -302,10 +302,10 @@
     git # Useful system-wide
     wget
     keymapp
-    ungoogled-chromium
-    qutebrowser
+    # ungoogled-chromium
+    # qutebrowser
     calibre
-    krita
+    # krita
     kdePackages.wacomtablet
     opentabletdriver
   ];

@@ -38,7 +38,7 @@
     kdePackages.gwenview
 
     texliveFull
-    qemu_full
+    # qemu_full
     # (pkgs.qemu_full.override {
     #   enableDocs = false;
     #   cephSupport = false;
@@ -46,7 +46,7 @@
     virt-manager
 
     # GUI Applications
-    ungoogled-chromium
+    # ungoogled-chromium
     keepassxc
 
     # Wayland utilities
