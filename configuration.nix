@@ -261,6 +261,7 @@
     # bottles
     # heroic
     kdePackages.dolphin
+    kdePackages.kio-extras
     signal-desktop
 
     # Wayland/Hyprland essentials
