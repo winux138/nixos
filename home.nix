@@ -1,8 +1,6 @@
 {
   config,
   pkgs,
-  hyprland-plugins,
-  hyprland-hyprsplit,
   ...
 }:
 {
@@ -59,12 +57,6 @@
   wayland.windowManager.hyprland = {
     enable = true;
 
-    plugins = [
-      # hyprland-plugins.packages.${pkgs.system}.hyprexpo
-      hyprland-plugins.packages.${pkgs.system}.hyprfocus
-      # hyprland-plugins.packages.${pkgs.system}.hyprgrass
-      hyprland-hyprsplit.packages.${pkgs.system}.hyprsplit
-    ];
     settings = {
       "$mod" = "SUPER";
       "$terminal" = "foot";
